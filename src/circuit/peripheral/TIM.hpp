@@ -4,16 +4,7 @@
 #include <stdint.h>
 #include "GPIO.hpp"
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-extern void TIM1_IRQHandler(void);
-extern void TIM2_IRQHandler(void);
-extern void TIM3_IRQHandler(void);
-extern void TIM4_IRQHandler(void);
-#ifdef __cplusplus
-}
-#endif
+
 
 #define AFIO_MAPR_TIM1_REMAP_0_Pos  AFIO_MAPR_TIM1_REMAP_Pos
 #define AFIO_MAPR_TIM1_REMAP_0_Msk  AFIO_MAPR_TIM1_REMAP_Msk

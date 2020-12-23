@@ -1,4 +1,5 @@
 #pragma once
+#include <stddef.h>
 #include "./peripheral/RCC.hpp"
 #include "./peripheral/GPIO.hpp"
 #include "./peripheral/TIM.hpp"
@@ -11,7 +12,13 @@
 
 namespace DCMD2020
 {
-//extern
+extern GPIO ledPin[ONBOARD_LED_NUM];
+extern GPIO dipSw[4];
+extern GPIO limitSwPin[ONBOARD_LIMITSW_NUM];
+extern TIM tim1, tim3; //Encoder
+extern TIM tim4;       //Motor
+extern TIM tim2;       //Timer
+extern USART usart1;
 
 //! setup
 void setup(void);

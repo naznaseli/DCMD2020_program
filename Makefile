@@ -37,28 +37,15 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c \
-$(wildcard src/*.c)
-#Src/system_stm32f1xx.c  
-#Src/main.c \
-#Src/stm32f1xx_it.c \
-#Src/stm32f1xx_hal_msp.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c \
-#Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c \
+$(wildcard src/*.c) \
+$(wildcard src/circuit/*.c) \
+$(wildcard src/circuit/peripheral/*.c)
 
 # C++ sources
 CPP_SOURCES = \
-$(wildcard src/*.cpp)
+$(wildcard src/*.cpp) \
+$(wildcard src/circuit/*.cpp) \
+$(wildcard src/circuit/peripheral/*.cpp)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -201,7 +188,10 @@ $(BUILD_DIR):
 #######################################
 clean:
 	-rm -fR $(BUILD_DIR)
-  
+
+write:
+	ST-LINK_CLI.exe -c SWD -P ./$(BUILD_DIR)/$(TARGET).hex -V -Rst
+
 #######################################
 # dependencies
 #######################################
