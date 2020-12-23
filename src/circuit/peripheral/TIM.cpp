@@ -43,10 +43,16 @@ void TIM::setupTimer(TIM_TypeDef* tim, uint16_t prescaler, uint32_t interruptTim
     //更新割り込みリクエスト許可
     TIMx->DIER = TIM_DIER_UIE;
 
-    TIMx->PSC = prescaler - 1;
-    TIMx->ARR = (TIMXCLK * interruptTime) / (prescaler * 1000) - 1;
+    //TIMx->PSC = prescaler - 1;
+    //TIMx->ARR = (TIMXCLK * interruptTime) / (prescaler * 1000) - 1;
+    //if(TIMx == TIM3){
+    //    //1ms interrupt
+        TIMx->PSC = 12-1;
+        TIMx->ARR = 6000-1;
+
+    //}
     resetCount();
-    //enableCount();
+    enableCount();
 }
 
 //なければNULLと-1入れる
@@ -147,7 +153,6 @@ void TIM::remapComp(
 void TIM::enableCount(void)
 {
     TIMx->CR1 |= TIM_CR1_CEN;
-
 }
 
 uint16_t TIM::getCount(void)

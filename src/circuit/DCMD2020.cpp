@@ -1,4 +1,5 @@
 #include "DCMD2020.hpp"
+#include <stdarg.h>
 
 namespace DCMD2020
 {
@@ -10,6 +11,8 @@ TIM tim1, tim3; //Encoder
 TIM tim4;       //Motor
 TIM tim2;       //Timer
 USART usart1;
+
+uint16_t m_delayCnt = 0;
 
 void setup(void)
 {
@@ -49,8 +52,9 @@ void GPIO_Setup(void)
 void TIM_Setup(void)
 {
     //旧
-    //tim2.setupTimer(TIM2, 12, 1000000);
-    tim3.setupTimer(TIM3, 12, 1000000);
+    tim2.setupTimer(TIM2, 12, 1000000);
+    tim3.setupEncoder(TIM3, PB4, PB5, 65535);
+    tim1.setupEncoder(TIM1, PA0, PA1, 65535);
     //tim3.enableCount();
 
     //新
@@ -69,6 +73,24 @@ void ADC_Setup(void)
 {
     //pa5, pa4
 
+}
+
+void interrupt(void)
+{
+    if(m_delayCnt) m_delayCnt--;
+    //usart1.printf("%d\n", m_delayCnt);
+}
+
+void delay_us(uint16_t time)
+{
+
+}
+
+
+void delay_ms(uint16_t time)
+{
+    m_delayCnt = time;
+    while(m_delayCnt) usart1.printf("");    //なんかこれつけないとwhile抜けない
 }
 
 }//namespace

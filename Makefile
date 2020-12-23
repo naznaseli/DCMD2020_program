@@ -39,13 +39,15 @@ C_SOURCES =  \
 Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c \
 $(wildcard src/*.c) \
 $(wildcard src/circuit/*.c) \
-$(wildcard src/circuit/peripheral/*.c)
+$(wildcard src/circuit/peripheral/*.c) \
+$(wildcard src/circuit/utils/*.c)
 
 # C++ sources
 CPP_SOURCES = \
 $(wildcard src/*.cpp) \
 $(wildcard src/circuit/*.cpp) \
-$(wildcard src/circuit/peripheral/*.cpp)
+$(wildcard src/circuit/peripheral/*.cpp) \
+$(wildcard src/circuit/utils/*.cpp)
 
 # ASM sources
 ASM_SOURCES =  \

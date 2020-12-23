@@ -5,11 +5,7 @@ using namespace DCMD2020;
 int main(void)
 {
     DCMD2020::setup();
-    //tim3.enableCount();
-    //DCMD2020::ledPin[0].write(1);
-    //DCMD2020::ledPin[1].write(1);
-    //DCMD2020::ledPin[2].write(1);
-    //DCMD2020::ledPin[3].write(1);
+    usart1.printf("F103 MD\n");
     while(1)
     {
         //usart1.printf("test\n");
@@ -29,18 +25,24 @@ int main(void)
         //else ledPin[2].write(0);
         //if(!rotaryDipPin[3].read()) ledPin[3].write(1);
         //else ledPin[3].write(0);
+        ledPin[1].write(1);
+        delay_ms(1000);
+        ledPin[1].write(0);
+        delay_ms(1000);
 
     }
 }
 
 void interrupt(void)
 {
-    //static uint16_t cnt = 0;
-    //if(++cnt >= 100)
-    //{
-    //    cnt = 0;
-    //    ledPin[0].toggle();
-    //}
+    DCMD2020::interrupt();
+    static uint16_t cnt = 0;
+    if(++cnt >= 1000)
+    {
+        cnt = 0;
+        ledPin[0].toggle();
+        usart1.printf("%d\t%d\n", TIM3->CNT, TIM1->CNT);
+    }
 
 }
 

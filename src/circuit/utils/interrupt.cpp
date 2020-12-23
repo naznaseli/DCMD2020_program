@@ -15,14 +15,14 @@ void TIM1_IRQHandler(void)
 void TIM2_IRQHandler(void)
 {
     TIM2->SR = 0;
-    //interrupt();
+    interrupt();
 
 }
 
 void TIM3_IRQHandler(void)
 {
     TIM3->SR = 0;
-    interrupt();
+    //interrupt();
 }
 
 void TIM4_IRQHandler(void)
